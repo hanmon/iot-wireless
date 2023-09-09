@@ -1,0 +1,27 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\variants\\rtl8195a"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\TempAndHumidity\\build\\sketch\\TempAndHumidity.ino.cpp",
+    "Include": "DHT.h",
+    "Includepath": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\GPIO"
+  },
+  {
+    "Sourcefile": "d:\\project\\ameba-arduino-samples\\TempAndHumidity\\build\\sketch\\TempAndHumidity.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\bruce\\AppData\\Local\\Arduino15\\packages\\realtek\\hardware\\ameba\\2.0.5\\libraries\\GPIO\\DHT.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]

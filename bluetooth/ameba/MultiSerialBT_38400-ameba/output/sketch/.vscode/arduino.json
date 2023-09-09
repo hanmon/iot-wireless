@@ -1,0 +1,7 @@
+#line 1 "D:\\project\\rpi\\iot-wireless\\ameba\\MultiSerialBT_38400\\.vscode\\arduino.json"
+{
+    "sketch": "MultiSerialBT_38400.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "./output",
+    "port": "COM26"
+}

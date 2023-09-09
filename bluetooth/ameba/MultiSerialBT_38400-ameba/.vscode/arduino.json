@@ -1,0 +1,6 @@
+{
+    "sketch": "MultiSerialBT_38400.ino",
+    "board": "realtek:ameba:ameba_rtl8195a",
+    "output": "./output",
+    "port": "COM26"
+}
