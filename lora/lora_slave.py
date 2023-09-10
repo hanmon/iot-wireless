@@ -7,7 +7,7 @@ import numpy as np
 port = 'COM21'  # 這裡需要根據你的設備更改串列埠
 baud_rate = 38400
 #ser = serial.Serial(port, baud_rate, timeout=5)
-ser = serial.Serial(port, baud_rate)
+ser = serial.Serial(port, baud_rate, timeout=5)
 #ser = serial.Serial(port,baud_rate,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS,timeout=2)
 SLAVE_ADDR = '27002e'
 MASTER_ADDR = '440033'
@@ -73,9 +73,16 @@ try:
     rx_bytes=ser.readline()
     print(rx_bytes)
     count=0
+    print("檢查此SLAVE模組是否加入LoRa網路")
     while "Join the AcsipLoraNet SUCCESSED!".encode() not in rx_bytes:
+        ser.write("LoraGetGateWayAddr\r".encode())
         rx_bytes=ser.readline()
         print(rx_bytes)
+        rx_str=rx_bytes.decode()
+        strs_to_check=["ERROR","UNKNOW","NULL"]
+        result=all(string not in rx_str for string in strs_to_check)
+        if result:
+            break
         count+=1
     print("SLAVE加入Lora網路成功")
     send_thread.start()
