@@ -45,9 +45,14 @@ stop_event = threading.Event()
 
 def send_data_periodically():
     while True:
-        sensor_value = np.random.randint(0, 100)
-        
-        ser.write("LoraNodeData SLAVDATA\r".encode())
+        temp = np.random.randint(10, 32)
+        humid = np.random.randint(40, 80)
+        formated_data = f"{temp},{humid}"
+        print("encode_data:{},length:{}".format(formated_data,len(formated_data)))
+        #encoded_base64 = base64.b64encode(encoded_data + b'\x00' * (16 - len(encoded_data)))
+        encoded_base64_str = base64.b64encode(formated_data.encode()).decode()
+        print("encode_base64_data:{},length:{}".format(encoded_base64_str,len(encoded_base64_str)))
+        ser.write(("LoraNodeData "+encoded_base64_str+"\r").encode())
         time.sleep(3)  # 每隔5秒發送一次資料
         if stop_event.is_set():
             print('Lora SLAVE傳送執行緒已停止')
