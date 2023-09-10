@@ -1,9 +1,11 @@
 #Lora MASTER範例
 import threading
-import serial, time, re
+import serial, time, re, base64
+from tqdm import tqdm
 
 # 設定串列通訊參數
-port = 'COM20'  # 這裡需要根據你的設備更改串列埠
+#port = 'COM20'  # 這裡需要根據你的設備更改串列埠
+port = '/dev/ttyUSB0'
 baud_rate = 38400
 #ser = serial.Serial(port, baud_rate, timeout=5)
 ser = serial.Serial(port, baud_rate)
@@ -23,6 +25,10 @@ MASTER
 4) LoraJoinNode [Slave Address]
 '''
 def lora_init(mode="MASTER"):
+    ser.write("FactoryReset\r".encode())
+    for i in range(10):
+        print(ser.readline())
+        time.sleep(0.1)
     if mode=="MASTER":
         ser.write("LoraMode MASTER\r".encode())
         print(ser.readline())
@@ -88,6 +94,10 @@ try:
                     print("Value:", value)
             if "Data" in kv_pairs:
                 print("Node:{},DataLength:{},Data:{}".format(kv_pairs["Node"],kv_pairs["DataLength"],kv_pairs["Data"]))
+                sensor_raw_data=(base64.b64decode(kv_pairs["Data"])).decode()
+                sensor_values=sensor_raw_data.split(",")
+                temp,humid=sensor_values[0],sensor_values[1]
+                print("Temp:{},Humid:{}".format(temp,humid))
         #print(rx_str)
         #time.sleep(5)
 
