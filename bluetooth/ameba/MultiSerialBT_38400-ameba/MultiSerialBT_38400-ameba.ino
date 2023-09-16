@@ -25,6 +25,7 @@ void setup() {
   // initialize both serial ports:
   Serial.begin(38400);
   mySerial.begin(38400);
+  Serial.print("Baudrate:38400");
 }
 
 void loop() {

@@ -26,6 +26,7 @@ void setup() {
   // initialize both serial ports:
   Serial.begin(9600);
   mySerial.begin(9600);
+  Serial.print("Baudrate:9600");
 }
 
 void loop() {
