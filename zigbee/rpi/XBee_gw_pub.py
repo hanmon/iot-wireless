@@ -21,7 +21,7 @@ import random
 import configparser 
 import serial
 config = configparser.ConfigParser()
-config.read('./cht.conf')
+config.read('../../cht.conf')
 projectKey = config.get('device-key', 'projectKey')
 deviceId   = config.get('device-key', 'deviceId')
 dht11Id   = config.get('device-key', 'dht11Id')
