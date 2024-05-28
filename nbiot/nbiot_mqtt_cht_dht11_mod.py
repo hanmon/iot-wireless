@@ -115,20 +115,19 @@ try:
 
     while 1:
         try:
-            humd=randint(50, 65)
-            temp=randint(20,35)
-            # humd = str(dhtDevice.humidity)
-            # temp = str(dhtDevice.temperature)
-            jdict = {"id":dht11Id, "value":[ humd,temp ]}
+            # humd=randint(50, 65)
+            # temp=randint(20,35)
+            humd = str(dhtDevice.humidity)
+            temp = str(dhtDevice.temperature)
+            json_doc = [{"id":dht11Id, "value":[ humd,temp ]}]
             # escape_json_str, str_len = genEscapeJsonStr(jdict)
-            json_str=json.dumps(jdict)
-            json_str="["+json_str+"]"
-            str_len=len(json_str)
+            json_payload=json.dumps(json_doc)
+            str_len=len(json_payload)
             print('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0')
             sendAt('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0','OK',1)
             time.sleep(1)
-            print(json_str)
-            ser.write(json_str.encode())
+            print(json_payload)
+            ser.write(json_payload.encode())
             time.sleep(10);
             print('send message successfully!')
             # sendAt('AT+SMDISC','OK',1)

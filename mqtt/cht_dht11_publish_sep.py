@@ -31,11 +31,11 @@ for i in range(100):
     try:
         # humd = str(dhtDevice.humidity)
         # temp = str(dhtDevice.temperature)
-        humd= str(np.random.randint(60,70))
+        humid= str(np.random.randint(60,70))
         temp= str(np.random.randint(20,30))
         t = str(time.strftime("%Y-%m-%dT%H:%M:%S"))
 
-        payload = [{"id":dht11Id,"value":[humd, temp], "time":t}]
+        payload = [{"id":"humid","value":[humid], "time":t},{"id":"temp","value":[temp], "time":t}]
         print(payload)
         client.publish(topic, "%s" % ( json.dumps(payload) ))
     except Exception as e:

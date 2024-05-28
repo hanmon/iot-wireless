@@ -86,56 +86,54 @@ def checkStart():
 
 try:
     checkStart()
-    sendAt('AT+CMNB=1','OK',1)
-    time.sleep(1)
-    print('wait for signal')
-    time.sleep(10)
-    sendAt('AT+CSQ','OK',1)
-    time.sleep(1)
-    sendAt('AT+CPSI?','OK',1)
-    time.sleep(1)
-    sendAt('AT+CGREG?','+CGREG: 0,1',0.5)
-    time.sleep(1)
-    sendAt('AT+CNACT=0,1','OK',1)
-    time.sleep(1)
-    sendAt('AT+CACID=0', 'OK',1)
-    time.sleep(1)
-    sendAt('AT+SMCONF=\"URL\",iot.cht.com.tw,1883','OK',1)
-    time.sleep(1)
-    sendAt('AT+SMCONF=\"USERNAME\",\"'+projectKey+'\"','OK',1)
-    time.sleep(1)
-    sendAt('AT+SMCONF=\"PASSWORD\",\"'+projectKey+'\"','OK',1)
-    time.sleep(1)
-    sendAt('AT+SMCONF=\"KEEPTIME\",60','OK',1)
-    time.sleep(1)
-    sendAt('AT+SMCONN','OK',5)
-    time.sleep(1)
-    #sendAt('AT+SMSUB=\"waveshare_pub\",1','OK',1)
-    client_id = str(randint(0, 65535))
+    # print('wait for signal')
+    # time.sleep(10)
+    # sendAt('AT+CSQ','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+CPSI?','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+CGREG?','+CGREG: 0,1',0.5)
+    # time.sleep(1)
+    # sendAt('AT+CNACT=0,1','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+CACID=0', 'OK',1)
+    # time.sleep(1)
+    # sendAt('AT+SMCONF=\"URL\",iot.cht.com.tw,1883','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+SMCONF=\"USERNAME\",\"'+projectKey+'\"','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+SMCONF=\"PASSWORD\",\"'+projectKey+'\"','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+SMCONF=\"KEEPTIME\",60','OK',1)
+    # time.sleep(1)
+    # sendAt('AT+SMCONN','OK',5)
+    # time.sleep(1)
+    # #sendAt('AT+SMSUB=\"waveshare_pub\",1','OK',1)
+    # client_id = str(randint(0, 65535))
 
-    while 1:
-        try:
-            humd=randint(50, 65)
-            temp=randint(20,35)
-            # humd = str(dhtDevice.humidity)
-            # temp = str(dhtDevice.temperature)
-            jdict = {"id":dht11Id, "value":[ humd,temp ]}
-            # escape_json_str, str_len = genEscapeJsonStr(jdict)
-            json_str=json.dumps(jdict)
-            json_str="["+json_str+"]"
-            str_len=len(json_str)
-            print('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0')
-            sendAt('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0','OK',1)
-            time.sleep(1)
-            print(json_str)
-            ser.write(json_str.encode())
-            time.sleep(10);
-            print('send message successfully!')
-            # sendAt('AT+SMDISC','OK',1)
-            # sendAt('AT+CNACT=0,0', 'OK', 1)
-            # powerDown(powerKey)
-        except:
-            pass
+    # while 1:
+    #     try:
+    #         humd=randint(50, 65)
+    #         temp=randint(20,35)
+    #         # humd = str(dhtDevice.humidity)
+    #         # temp = str(dhtDevice.temperature)
+    #         jdict = {"id":dht11Id, "value":[ humd,temp ]}
+    #         # escape_json_str, str_len = genEscapeJsonStr(jdict)
+    #         json_str=json.dumps(jdict)
+    #         json_str="["+json_str+"]"
+    #         str_len=len(json_str)
+    #         print('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0')
+    #         sendAt('AT+SMPUB=\"/v1/device/' + deviceId + '/rawdata\",' + str(str_len) +',0,0','OK',1)
+    #         time.sleep(1)
+    #         print(json_str)
+    #         ser.write(json_str.encode())
+    #         time.sleep(10);
+    #         print('send message successfully!')
+    #         # sendAt('AT+SMDISC','OK',1)
+    #         # sendAt('AT+CNACT=0,0', 'OK', 1)ls
+    #         # powerDown(powerKey)
+    #     except:
+    #         pass
         
 
 except Exception as e:
